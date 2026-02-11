@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KWP Recovery Roadmap | Kingdom Wellness Protocol</title>
+    <title>KWP Recovery Roadmap | Knox Windsor Pembroke</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap');
 
@@ -29,7 +29,6 @@
             min-height: 100vh;
         }
 
-        /* PROFESSIONAL LOGO STYLES */
         .kwp-header {
             display: flex;
             align-items: center;
@@ -195,13 +194,6 @@
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-        .mini-logo {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--kwp-blue);
-            letter-spacing: 2px;
-        }
-
         .track-card { 
             background: var(--bg-card); 
             border: 1px solid rgba(255,255,255,0.08); 
@@ -279,6 +271,24 @@
             margin-top: 12px;
             text-align: center;
             display: none;
+            padding: 10px;
+            background: rgba(255,0,0,0.1);
+            border-radius: 8px;
+        }
+
+        .legal-section {
+            padding: 40px 20px;
+            background: rgba(0,0,0,0.5);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .legal-box {
+            padding: 24px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .spinner { 
@@ -302,8 +312,9 @@
     <!-- PAYMENT SCREEN -->
     <div class="screen active" id="payment-screen">
         <div class="hero">
-            <!-- PROFESSIONAL LOGO -->
-            <img src="kwp-logo.jpg" alt="KWP Kingdom Wellness Protocol" class="kwp-hero-logo-img">
+            <!-- LOGO ONLY - NO "Kingdom Wellness Protocol" TEXT -->
+            <img src="kwp-logo.jpg" alt="KWP" class="kwp-hero-logo-img" onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='block';">
+            <div id="logo-fallback" style="display: none; font-size: 48px; margin-bottom: 24px;">👑 KWP</div>
             
             <h1>Recovery Roadmap</h1>
             <p>Evidence-based 30-day protocols for lasting freedom from addiction.</p>
@@ -353,8 +364,7 @@
 
     <!-- SUCCESS SCREEN -->
     <div class="screen" id="success-screen" style="text-align: center; padding: 40px 20px;">
-        <!-- LOGO -->
-        <img src="kwp-logo.jpg" alt="KWP" class="kwp-hero-logo-img" style="height: 80px;">
+        <img src="kwp-logo.jpg" alt="KWP" class="kwp-hero-logo-img" style="height: 80px;" onerror="this.style.display='none'">
         
         <div style="background: rgba(16,185,129,0.1); border: 1px solid var(--success); border-radius: 12px; padding: 16px; margin: 24px 0;">
             <div style="font-size: 11px; color: var(--success); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 8px;">Protocol Activated</div>
@@ -375,7 +385,7 @@
     <div class="screen" id="app-dashboard">
         <div class="app-header">
             <div style="display: flex; align-items: center; gap: 12px;">
-                <img src="kwp-logo.jpg" alt="KWP" class="kwp-logo-small">
+                <img src="kwp-logo.jpg" alt="KWP" class="kwp-logo-small" onerror="this.style.display='none'">
                 <div style="color: var(--success); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">✓ Member</div>
             </div>
         </div>
@@ -432,11 +442,28 @@
     <div class="screen" id="calendar-view">
         <div class="app-header">
             <div style="display: flex; align-items: center; gap: 12px;">
-                <img src="kwp-logo.jpg" alt="KWP" class="kwp-logo-small">
+                <img src="kwp-logo.jpg" alt="KWP" class="kwp-logo-small" onerror="this.style.display='none'">
                 <div style="font-size: 12px; color: var(--text-muted);" id="track-label">Protocol</div>
             </div>
         </div>
         <div class="day-grid" id="calendar-grid"></div>
+    </div>
+
+    <!-- LEGAL SECTION - KNOX WINDSOR PEMBROKE -->
+    <div class="legal-section" id="legal-section">
+        <div class="legal-box">
+            <p style="color: var(--text-muted); font-size: 11px; margin-bottom: 16px; letter-spacing: 0.1em; text-transform: uppercase;">
+                <strong>KWP stands for Knox Windsor Pembroke</strong>
+            </p>
+            <p style="color: var(--text-muted); font-size: 11px; line-height: 1.8;">
+                <strong>Disclaimer:</strong> KWP Recovery Roadmap provides educational tools and protocols only. 
+                We do not guarantee specific recovery results. Individual results may vary based on personal commitment, 
+                medical history, and individual circumstances. This is not a substitute for professional medical treatment.
+            </p>
+            <p style="color: var(--text-muted); font-size: 11px; margin-top: 16px;">
+                © Knox Windsor Pembroke. All rights reserved.
+            </p>
+        </div>
     </div>
 
     <script>
@@ -493,6 +520,10 @@
                         product: 'recovery-roadmap'
                     })
                 });
+                
+                if (!response.ok) {
+                    throw new Error(`Server error: ${response.status}`);
+                }
                 
                 const data = await response.json();
                 
